@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "topmountain",
+      "runtimeExecutable": "C:\\Users\\Tharusha\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+      "runtimeArgs": ["-m", "http.server", "5173", "--directory", "."],
+      "port": 5173
+    }
+  ]
+}
