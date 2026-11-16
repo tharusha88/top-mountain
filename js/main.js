@@ -22,6 +22,19 @@
     t.scrollIntoView({ behavior: 'smooth' });
   }));
 
+  // mobile menu
+  const toggle = $('.nav__toggle'), menu = $('#menu');
+  const setMenu = open => {
+    body.classList.toggle('menu-open', open);
+    toggle.setAttribute('aria-expanded', open);
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    menu.setAttribute('aria-hidden', !open);
+  };
+  toggle.addEventListener('click', () => setMenu(!body.classList.contains('menu-open')));
+  $$('#menu a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+  window.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+  matchMedia('(min-width: 900px)').addEventListener('change', e => { if (e.matches) setMenu(false); });
+
   // guest quotes
   const quotes = $$('.quote'), dots = $$('.q-dots i');
   let qi = 0, qTimer;
@@ -62,7 +75,8 @@
 
   // fireflies
   $$('.flies').forEach(box => {
-    for (let i = 0; i < 16; i++) {
+    const count = matchMedia('(max-width: 899px)').matches ? 7 : 16;
+    for (let i = 0; i < count; i++) {
       const s = document.createElement('span');
       s.style.left = (5 + Math.random() * 90) + '%';
       s.style.top = (35 + Math.random() * 60) + '%';
@@ -103,6 +117,7 @@
     return;
   }
   gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.config({ ignoreMobileResize: true }); // URL bar show/hide must not re-pin everything
 
   // hidden start states
   const heroLines = $$('.hero .lines .l > span');
@@ -151,7 +166,7 @@
   const mm = gsap.matchMedia();
 
   // stays — horizontal scroll on desktop
-  mm.add('(min-width: 900px)', () => {
+  mm.add('(min-width: 900px) and (not ((max-height: 559px) and (pointer: coarse)))', () => {
     const track = $('.stays__track'), cur = $('.stays__cur'), stays = $$('.stay');
     const dist = () => track.scrollWidth - innerWidth;
     gsap.to(track, {

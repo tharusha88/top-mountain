@@ -74,7 +74,7 @@ button,input,select{font:inherit;color:inherit}
 @media (hover:hover) and (pointer:fine){.cursor{display:grid}}
 
 /* ---------- nav ---------- */
-.nav{position:fixed;top:0;left:0;right:0;z-index:50;height:var(--nav-h);padding:0 var(--pad);display:flex;align-items:center;justify-content:space-between;gap:24px;transition:background .4s,backdrop-filter .4s}
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;height:var(--nav-h);padding:0 max(var(--pad),env(safe-area-inset-right)) 0 max(var(--pad),env(safe-area-inset-left));display:flex;align-items:center;justify-content:space-between;gap:24px;transition:background .4s,backdrop-filter .4s}
 .nav.is-scrolled{background:rgba(10,22,16,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
 .logo{display:flex;align-items:baseline;gap:10px;color:var(--cream)}
 .logo svg{align-self:center;color:var(--gold)}
@@ -85,6 +85,20 @@ button,input,select{font:inherit;color:inherit}
 .nav__links a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:right;transition:transform .4s}
 .nav__links a:hover{color:var(--text)}
 .nav__links a:hover::after{transform:scaleX(1);transform-origin:left}
+
+.nav__toggle{display:none;position:relative;width:44px;height:44px;margin-right:-10px;background:none;border:0;cursor:pointer;color:var(--cream);-webkit-tap-highlight-color:transparent}
+.nav__toggle i{position:absolute;left:11px;right:11px;height:1.5px;background:currentColor;transition:transform .35s,top .35s}
+.nav__toggle i:nth-child(1){top:18px}.nav__toggle i:nth-child(2){top:25px}
+.menu-open .nav__toggle i:nth-child(1){top:21px;transform:rotate(45deg)}
+.menu-open .nav__toggle i:nth-child(2){top:21px;transform:rotate(-45deg)}
+.menu{position:fixed;inset:0;z-index:49;display:none;flex-direction:column;justify-content:space-between;padding:calc(var(--nav-h) + 6vh) var(--pad) max(32px,env(safe-area-inset-bottom));background:rgba(10,22,16,.97);opacity:0;visibility:hidden;transition:opacity .35s,visibility 0s .35s;overflow-y:auto;overscroll-behavior:contain}
+.menu-open .menu{opacity:1;visibility:visible;transition:opacity .35s}
+.menu__links{display:grid}
+.menu__links a{font-family:var(--serif);font-size:clamp(2.2rem,10vw,3.4rem);line-height:1.1;padding:14px 0;border-bottom:1px solid rgba(239,232,216,.12);color:var(--cream)}
+.menu__foot{display:grid;gap:22px;justify-items:start;padding-top:32px}
+.menu__tel{color:var(--muted);letter-spacing:.08em}
+body.menu-open{overflow:hidden}
+.menu-open .nav{background:transparent;backdrop-filter:none;-webkit-backdrop-filter:none}
 
 /* ---------- hero ---------- */
 .hero{position:relative;height:100vh;height:100svh;min-height:620px;overflow:hidden;display:flex;align-items:center;padding:var(--nav-h) var(--pad) 0}
@@ -105,7 +119,7 @@ button,input,select{font:inherit;color:inherit}
 @keyframes pulse{0%,100%{transform:scaleY(.4);transform-origin:top;opacity:.4}50%{transform:scaleY(1);transform-origin:top;opacity:1}}
 
 /* ---------- chapter one ---------- */
-.chapter{position:relative;height:100vh;overflow:hidden;background:var(--ink)}
+.chapter{position:relative;height:100vh;height:100svh;overflow:hidden;background:var(--ink)}
 .chapter__frame{position:absolute;inset:0;clip-path:inset(54% 37% 12% 37% round 6px);will-change:clip-path}
 .chapter__bg{display:none;position:absolute;inset:-6%;width:112%;height:112%;filter:blur(36px) saturate(1.1) brightness(.7)}
 .chapter__pic{position:relative;display:block;width:100%;height:100%}
@@ -122,10 +136,10 @@ button,input,select{font:inherit;color:inherit}
 
 /* ---------- stays ---------- */
 .stays{position:relative;background:var(--forest);overflow:hidden}
-.stays__track{display:flex;align-items:stretch;height:100vh;width:max-content;will-change:transform}
+.stays__track{display:flex;align-items:stretch;height:100vh;height:100svh;width:max-content;will-change:transform}
 .stays__intro{flex:none;width:40vw;max-width:680px;padding:var(--nav-h) 3vw 0 var(--pad);display:flex;flex-direction:column;justify-content:center}
 .stays__hint{margin-top:44px;font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold)}
-.stay{flex:none;width:94vw;height:100vh;padding:calc(var(--nav-h) + 18px) 5vw 26px 0;display:grid;grid-template-columns:1.55fr 1fr;gap:6vw;align-items:stretch}
+.stay{flex:none;width:94vw;height:100vh;height:100svh;padding:calc(var(--nav-h) + 18px) 5vw 26px 0;display:grid;grid-template-columns:1.55fr 1fr;gap:6vw;align-items:stretch}
 .stay__media{position:relative;height:100%;min-height:0}
 .stay__main{height:100%;overflow:hidden;border-radius:4px}
 .stay__main img{transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}
@@ -205,8 +219,8 @@ button,input,select{font:inherit;color:inherit}
 .eve__card figcaption p{color:rgba(239,232,216,.86);max-width:36ch}
 
 /* ---------- one day ---------- */
-.day{position:relative;height:100vh;overflow:hidden;background:#000}
-.day__stage{position:absolute;left:50%;top:50%;width:max(100vw,133.4vh);aspect-ratio:4/3;transform:translate(-50%,-50%)}
+.day{position:relative;height:100vh;height:100svh;overflow:hidden;background:#000}
+.day__stage{position:absolute;left:50%;top:50%;width:max(100vw,133.4vh);width:max(100vw,133.4svh);aspect-ratio:4/3;transform:translate(-50%,-50%)}
 .day__img{position:absolute;inset:0}
 .day__warm,.day__night{position:absolute;inset:0;opacity:0;pointer-events:none}
 .day__warm{background:linear-gradient(200deg,rgba(255,170,60,.9),rgba(255,120,40,.35) 60%,rgba(120,40,10,.5));mix-blend-mode:soft-light}
@@ -255,7 +269,7 @@ button,input,select{font:inherit;color:inherit}
 .q-dots i.is-on{background:var(--dark)}
 
 /* ---------- book ---------- */
-.book{position:relative;min-height:100vh;display:flex;align-items:center;padding:calc(var(--nav-h) + 8vh) var(--pad) 12vh;overflow:hidden}
+.book{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;padding:calc(var(--nav-h) + 8vh) var(--pad) 12vh;overflow:hidden}
 .book__media{position:absolute;inset:0}
 .book__media img{object-position:62% 50%;filter:saturate(.8)}
 .book__night{position:absolute;inset:0;background:linear-gradient(180deg,#0a1436,#101e44 55%,#070d22);mix-blend-mode:multiply;opacity:.7}
@@ -281,8 +295,18 @@ button,input,select{font:inherit;color:inherit}
 .foot__legal{grid-column:1/-1;padding-top:26px;border-top:1px solid rgba(239,232,216,.12);font-size:.8rem;color:var(--muted)}
 
 /* ---------- responsive ---------- */
-@media (max-width:899px){
+@media (max-width:899px), (max-height:559px) and (pointer:coarse){
   .nav__links{display:none}
+  .nav__toggle{display:block}
+  .menu{display:flex}
+  .hero__scroll{display:none}
+  .mist{filter:blur(36px)}
+  .mist--b{display:none}
+  .btn{min-height:44px}
+  .quotes__nav button{min-width:44px;min-height:44px}
+  .acc__body{width:auto}
+  .day__phases{font-size:.6rem}
+  .foot{padding-bottom:max(36px,env(safe-area-inset-bottom))}
   .logo__en{display:none}
   .hero__img{object-position:70% 50%}
   .hero__shade{background:linear-gradient(0deg,rgba(10,22,16,.96) 0%,rgba(10,22,16,.6) 45%,rgba(10,22,16,.25) 100%)}
@@ -315,12 +339,30 @@ button,input,select{font:inherit;color:inherit}
   .eve__grid{grid-template-columns:1fr;height:auto;min-height:0}
   .eve__card{height:64vh}
   .dining__frame{height:74vh}
-  .day__phases{left:var(--pad);right:var(--pad);bottom:4vh;gap:0;justify-content:space-between;font-size:.5rem;letter-spacing:.14em}
+  .day__phases{left:var(--pad);right:var(--pad);bottom:max(4vh,env(safe-area-inset-bottom));gap:0;justify-content:space-between;letter-spacing:.1em}
   .day__clock{bottom:12vh}
   .reach{grid-template-columns:1fr;padding:110px var(--pad)}
   .bform{grid-template-columns:1fr 1fr;gap:18px 18px}
   .foot{grid-template-columns:1fr}
   .foot__cols{gap:50px}
+}
+@media (max-width:520px){
+  body{font-size:16px}
+  .nav__book{display:none}
+  .hero__cta .btn{flex:1 1 100%;justify-content:space-between}
+  .lede{font-size:1.02rem}
+  .eyebrow{letter-spacing:.2em;gap:10px}
+  .stay__side{width:46%;border-width:4px}
+  .specs{gap:20px 16px}
+  .bform{grid-template-columns:1fr}
+  .bform__actions .btn{width:100%;justify-content:space-between}
+  .reach__list li{flex-direction:column;align-items:flex-start;gap:6px}
+  .reach__list b{text-align:left}
+  .foot__cols{flex-direction:column;gap:32px}
+  .eve__card{height:56vh}
+  .acc__item.is-on{height:320px}
+  .quotes{min-height:19rem}
+  .day__quote{font-size:clamp(2rem,9vw,2.6rem)}
 }
 @media (prefers-reduced-motion:reduce){
   .mist,.hero__scroll::after,.day__glows i,.flies span{animation:none}
