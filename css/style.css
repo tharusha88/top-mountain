@@ -297,6 +297,8 @@ body.menu-open{overflow:hidden}
 .slot{position:absolute;inset:0;background:radial-gradient(120% 80% at 50% 100%,#3a1c08 0%,#170d07 45%,#0a0d10 100%)}
 .slot--meal{background:radial-gradient(120% 90% at 30% 100%,#3b2a14 0%,#18130c 50%,#0b100d 100%)}
 .slot img{transition:transform 1.6s cubic-bezier(.2,.7,.2,1)}
+.slot--fire img{object-position:50% 70%}
+.slot--meal img{object-position:50% 60%}
 .eve__card:hover .slot img{transform:scale(1.04)}
 .slot .flies{opacity:1}
 .slot__note{display:none;position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);padding:10px 18px;border:1px dashed rgba(239,232,216,.35);border-radius:99px;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
