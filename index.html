@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=10">
+<link rel="stylesheet" href="css/style.css?v=18">
 </head>
 <body class="is-loading">
 
@@ -37,6 +37,7 @@
     <a href="#craft">Craft</a>
     <a href="#dining">Dining</a>
     <a href="#location">Location</a>
+    <a href="#nearby">Nearby</a>
   </nav>
   <a class="btn btn--light btn--sm nav__book" href="#book">Book your stay <span class="arr">→</span></a>
   <button type="button" class="nav__toggle" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><i></i><i></i></button>
@@ -50,6 +51,7 @@
     <a href="#craft">Craft</a>
     <a href="#dining">Dining</a>
     <a href="#location">Location</a>
+    <a href="#nearby">Nearby</a>
   </nav>
   <div class="menu__foot">
     <a class="btn btn--light" href="#book">Book your stay <span class="arr">→</span></a>
@@ -69,10 +71,12 @@
   </div>
   <div class="hero__content">
     <p class="eyebrow hero__fade">Escape to Diyatalawa</p>
-    <h1 class="display lines">
-      <span class="l"><span>Pure air.</span></span>
-      <span class="l"><span>Endless</span></span>
-      <span class="l"><span><em>greenery.</em></span></span>
+    <h1 class="display lines hero__title" aria-label="Top Mountain Resort">
+      <span class="l" aria-hidden="true"><span><span class="gl">
+        <span class="gl__base">Top Mountain <em>Resort</em></span>
+        <span class="gl__r">Top Mountain <em>Resort</em></span>
+        <span class="gl__b">Top Mountain <em>Resort</em></span>
+      </span></span></span>
     </h1>
     <p class="lede hero__fade">A 3-acre estate in the cool, pine-covered hills of Diyatalawa. Your hidden sanctuary.</p>
     <div class="hero__cta hero__fade">
@@ -210,6 +214,40 @@
   </div>
 </section>
 
+<!-- PEACOCK -->
+<section class="peacock" id="peacock">
+  <canvas class="peacock__ambient" width="36" height="64" aria-hidden="true"></canvas>
+  <div class="peacock__text">
+    <p class="eyebrow" data-reveal>Seen from the balcony</p>
+    <h2 class="display lines">
+      <span class="l"><span>A visitor</span></span>
+      <span class="l"><span>in <em>blue.</em></span></span>
+    </h2>
+    <p class="lede" data-reveal>A peacock landed on a balcony rail at the resort, took in the valley for a while, then flew down to the roof below.</p>
+  </div>
+
+  <div class="peacock__stage">
+    <div class="peacock__rings" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="peacock__frame">
+      <video class="peacock__video" muted loop playsinline preload="none" poster="assets/video/peacock-poster.jpg" aria-label="A peacock on the resort's balcony rail takes off and flies down to a roof, partly in slow motion">
+        <source src="assets/video/peacock.mp4" type="video/mp4">
+      </video>
+      <div class="peacock__shade"></div>
+      <span class="peacock__slow" aria-hidden="true"><i></i>Slow motion · ¼ speed</span>
+      <button type="button" class="peacock__toggle" aria-label="Pause video"><span class="peacock__icon"></span></button>
+      <p class="peacock__cap" aria-hidden="true"><span class="peacock__cap-num">01</span><span class="peacock__cap-txt">Close up</span></p>
+      <span class="peacock__progress" aria-hidden="true"><i></i></span>
+    </div>
+  </div>
+
+  <ol class="peacock__steps" aria-label="Jump to a moment in the video">
+    <li data-reveal><button type="button" data-t="0"><span class="peacock__num">01</span><span class="peacock__label">Close up</span><i class="peacock__bar"><b></b></i></button></li>
+    <li data-reveal><button type="button" data-t="2.87"><span class="peacock__num">02</span><span class="peacock__label">On the rail</span><i class="peacock__bar"><b></b></i></button></li>
+    <li data-reveal><button type="button" data-t="7.33" data-slow="1"><span class="peacock__num">03</span><span class="peacock__label">Take-off</span><i class="peacock__bar"><b></b></i></button></li>
+    <li data-reveal><button type="button" data-t="12.63"><span class="peacock__num">04</span><span class="peacock__label">Landing</span><i class="peacock__bar"><b></b></i></button></li>
+  </ol>
+</section>
+
 <!-- CRAFT -->
 <section class="craft" id="craft">
   <div class="craft__head">
@@ -341,6 +379,159 @@
   </ul>
 </section>
 
+<!-- NEARBY LOCATIONS -->
+<section class="near" id="nearby">
+  <div class="near__head">
+    <div>
+      <p class="eyebrow" data-reveal>Nearby locations</p>
+      <h2 class="display lines">
+        <span class="l"><span>Waterfalls, peaks</span></span>
+        <span class="l"><span>and <em>tea country.</em></span></span>
+      </h2>
+    </div>
+    <div class="near__side">
+      <p class="lede near__lede" data-reveal>Sixteen places within a day trip of the resort, from 13 km to 51 km away.</p>
+      <p class="near__hint" data-reveal><span class="near__hint-fine">Drag the rows or open a photo</span><span class="near__hint-touch">Swipe the rows or tap a photo</span> <span class="arr">→</span></p>
+    </div>
+  </div>
+
+  <div class="near__rows">
+    <div class="near__row" data-dir="-1">
+      <div class="near__track">
+        <div class="loc" role="button" tabindex="0" data-cursor style="--ar:.79" data-full="assets/img/near/idalgashinna-rock.jpg" data-map="Idalgashinna Rock">
+          <div class="loc__img"><img src="assets/img/near/s/idalgashinna-rock.jpg" alt="Sunlight through pine trees and mist at Idalgashinna" loading="lazy" draggable="false"></div>
+          <span class="loc__km">13 km</span>
+          <div class="loc__cap"><span class="loc__type">Viewpoint</span><h3 class="loc__name">Idalgashinna Rock</h3></div>
+          <p class="loc__desc">Tall pines, drifting mist and a long view off the edge of the hill country.</p>
+        </div>
+        <div class="loc" role="button" tabindex="0" data-cursor style="--ar:1.5" data-full="assets/img/near/adisham-bungalow.jpg" data-map="Adisham Bungalow Haputale">
+          <div class="loc__img"><img src="assets/img/near/s/adisham-bungalow.jpg" alt="The stone Tudor-style Adisham Bungalow with its lawn and rose garden" loading="lazy" draggable="false"></div>
+          <span class="loc__km">13 km</span>
+          <div class="loc__cap"><span class="loc__type">Heritage</span><h3 class="loc__name">Adisham Bungalow</h3></div>
+          <p class="loc__desc">A 1930s Tudor-style stone house near Haputale, now a Benedictine monastery with English-style gardens.</p>
+        </div>
+        <div class="loc" role="button" tabindex="0" data-cursor style="--ar:.75" data-full="assets/img/near/tea-factory.jpg" data-more="assets/img/near/tea-factory-2.jpg" data-map="Ella Organic Tea Factory">
+          <div class="loc__img"><img src="assets/img/near/s/tea-factory.jpg" alt="Two glasses of Ceylon tea held up over a green tea estate" loading="lazy" draggable="false"></div>
+          <span class="loc__km">16 km</span>
+          <div class="loc__cap"><span class="loc__type">Tea</span><h3 class="loc__name">Ella Organic Tea Factory</h3></div>
+          <p class="loc__desc">Walk the tea rows, see how the leaf is made, and finish with a fresh cup of Uva tea.</p>
+        </div>
+        <div class="loc" role="button" tabindex="0" data-cursor style="--ar:.96" data-full="assets/img/near/flying-ravana.jpg" data-map="Flying Ravana Ella">
+          <div class="loc__img"><img src="assets/img/near/s/flying-ravana.jpg" alt="The Flying Ravana sign and zipline platform on a jungle hillside" loading="lazy" draggable="false"></div>
+          <span class="loc__km">21 km</span>
+          <div class="loc__cap"><span class="loc__type">Adventure</span><h3 class="loc__name">Flying Ravana</h3></div>
+          <p class="loc__desc">A long zipline ride across a forested valley just outside Ella.</p>
+        </div>
+        <div class="loc" role="button" tabindex="0" data-cursor style="--ar:1.19" data-full="assets/img/near/ravana-cave.jpg" data-map="Ravana Cave Ella">
+          <div class="loc__img"><img src="assets/img/near/s/ravana-cave.jpg" alt="Looking out from the mouth of Ravana Cave to the jungle" loading="lazy" draggable="false"></div>
+          <span class="loc__km">21 km</span>
+          <div class="loc__cap"><span class="loc__type">Legend</span><h3 class="loc__name">Ravana Cave</h3></div>
+          <p class="loc__desc">A cliffside cave near Ella, tied by legend to King Ravana of the Ramayana. Reached by a steep stairway.</p>
+        </div>
+        <div class="loc" role="button" tabindex="0" data-cursor style="--ar:1.78" data-full="assets/img/near/mahamevnawa-monastery.jpg" data-map="Mahamevnawa Meditation Monastery Ella">
+          <div class="loc__img"><img src="assets/img/near/s/mahamevnawa-monastery.jpg" alt="A white stupa on a forested ridge at sunrise, with mist in the valleys" loading="lazy" draggable="false"></div>
+          <span class="loc__km">21 km</span>
+          <div class="loc__cap"><span class="loc__type">Temple</span><h3 class="loc__name">Mahamevnawa Meditation Monastery</h3></div>
+          <p class="loc__desc">A quiet meditation monastery and a white stupa on a ridge, often wrapped in morning mist.</p>
+        </div>
+        <div class="loc" role="button" tabindex="0" data-cursor style="--ar:.8" data-full="assets/img/near/nine-arch-bridge.jpg" data-map="Nine Arch Bridge Ella">
+          <div class="loc__img"><img src="assets/img/near/s/nine-arch-bridge.jpg" alt="A train crossing the stone Nine Arch Bridge above tea bushes" loading="lazy" draggable="false"></div>
+          <span class="loc__km">22 km</span>
+          <div class="loc__cap"><span class="loc__type">Railway</span><h3 class="loc__name">Nine Arch Bridge</h3></div>
+          <p class="loc__desc">The colonial-era railway viaduct near Ella. Time it right and watch a train curve across its nine arches.</p>
+        </div>
+        <div class="loc" role="button" tabindex="0" data-cursor style="--ar:.63" data-full="assets/img/near/ella-rock.jpg" data-map="Ella Rock">
+          <div class="loc__img"><img src="assets/img/near/s/ella-rock.jpg" alt="The green flank of Ella Rock dropping into a hazy valley" loading="lazy" draggable="false"></div>
+          <span class="loc__km">22 km</span>
+          <div class="loc__cap"><span class="loc__type">Hike</span><h3 class="loc__name">Ella Rock</h3></div>
+          <p class="loc__desc">A half-day hike along the railway and through tea estates to a summit high above the Ella Gap.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="near__row" data-dir="1">
+      <div class="near__track">
+        <div class="loc" role="button" tabindex="0" data-cursor style="--ar:.75" data-full="assets/img/near/little-adams-peak.jpg" data-map="Little Adam's Peak Ella">
+          <div class="loc__img"><img src="assets/img/near/s/little-adams-peak.jpg" alt="A hiker sitting on a rock at the top of Little Adam's Peak" loading="lazy" draggable="false"></div>
+          <span class="loc__km">22 km</span>
+          <div class="loc__cap"><span class="loc__type">Hike</span><h3 class="loc__name">Little Adam’s Peak</h3></div>
+          <p class="loc__desc">An easy climb from Ella through tea gardens, with wide views of Ella Rock and the gap.</p>
+        </div>
+        <div class="loc" role="button" tabindex="0" data-cursor style="--ar:.8" data-full="assets/img/near/ravana-falls.jpg" data-map="Ravana Falls">
+          <div class="loc__img"><img src="assets/img/near/s/ravana-falls.jpg" alt="Ravana Falls tumbling down a rocky gorge in the jungle" loading="lazy" draggable="false"></div>
+          <span class="loc__km">25 km</span>
+          <div class="loc__cap"><span class="loc__type">Waterfall</span><h3 class="loc__name">Ravana Falls</h3></div>
+          <p class="loc__desc">A wide, tiered waterfall right beside the Ella–Wellawaya road.</p>
+        </div>
+        <div class="loc" role="button" tabindex="0" data-cursor style="--ar:1.33" data-full="assets/img/near/liptons-seat.jpg" data-map="Lipton's Seat Haputale">
+          <div class="loc__img"><img src="assets/img/near/s/liptons-seat.jpg" alt="The bronze statue of Thomas Lipton on a bench above a sea of cloud at sunrise" loading="lazy" draggable="false"></div>
+          <span class="loc__km">25 km</span>
+          <div class="loc__cap"><span class="loc__type">Viewpoint</span><h3 class="loc__name">Lipton’s Seat</h3></div>
+          <p class="loc__desc">The lookout above Dambatenne where Sir Thomas Lipton surveyed his tea estates. Best at sunrise.</p>
+        </div>
+        <div class="loc" role="button" tabindex="0" data-cursor style="--ar:1.33" data-full="assets/img/near/devils-staircase.jpg" data-map="Devil's Staircase Ohiya">
+          <div class="loc__img"><img src="assets/img/near/s/devils-staircase.jpg" alt="Open highland grassland under storm clouds" loading="lazy" draggable="false"></div>
+          <span class="loc__km">26 km</span>
+          <div class="loc__cap"><span class="loc__type">Trail</span><h3 class="loc__name">The Devil’s Staircase</h3></div>
+          <p class="loc__desc">A steep, hairpinned track dropping off the high plateau, loved by hikers and 4×4 drivers.</p>
+        </div>
+        <div class="loc" role="button" tabindex="0" data-cursor style="--ar:.75" data-full="assets/img/near/wangedigala-rock.jpg" data-map="Wangedigala Rock">
+          <div class="loc__img"><img src="assets/img/near/s/wangedigala-rock.jpg" alt="Sunrise over layered hills seen from Wangedigala Rock" loading="lazy" draggable="false"></div>
+          <span class="loc__km">28 km</span>
+          <div class="loc__cap"><span class="loc__type">Sunrise hike</span><h3 class="loc__name">Wangedigala Rock</h3></div>
+          <p class="loc__desc">An early climb to a rocky top for sunrise, often above a sea of cloud.</p>
+        </div>
+        <div class="loc" role="button" tabindex="0" data-cursor style="--ar:1.33" data-full="assets/img/near/pilkington-view-point.jpg" data-map="Pilkington View Point">
+          <div class="loc__img"><img src="assets/img/near/s/pilkington-view-point.jpg" alt="A lone tree and a thatched hut on a green hilltop in the mist" loading="lazy" draggable="false"></div>
+          <span class="loc__km">32 km</span>
+          <div class="loc__cap"><span class="loc__type">Viewpoint</span><h3 class="loc__name">Pilkington View Point</h3></div>
+          <p class="loc__desc">A grassy hilltop with a lone tree, where the cloud often sits right at your feet.</p>
+        </div>
+        <div class="loc" role="button" tabindex="0" data-cursor style="--ar:.8" data-full="assets/img/near/diyaluma-falls.jpg" data-more="assets/img/near/diyaluma-falls-2.jpg" data-map="Diyaluma Falls">
+          <div class="loc__img"><img src="assets/img/near/s/diyaluma-falls.jpg" alt="A natural rock pool at the top of Diyaluma Falls" loading="lazy" draggable="false"></div>
+          <span class="loc__km">42 km</span>
+          <div class="loc__cap"><span class="loc__type">Waterfall</span><h3 class="loc__name">Diyaluma Falls</h3></div>
+          <p class="loc__desc">Sri Lanka’s second-highest waterfall, with natural rock pools to swim in at the top.</p>
+        </div>
+        <div class="loc" role="button" tabindex="0" data-cursor style="--ar:.8" data-full="assets/img/near/bakers-bend.jpg" data-map="Bakers Bend Sri Lanka">
+          <div class="loc__img"><img src="assets/img/near/s/bakers-bend.jpg" alt="A narrow road winding through steep green hills" loading="lazy" draggable="false"></div>
+          <span class="loc__km">51 km</span>
+          <div class="loc__cap"><span class="loc__type">Scenic road</span><h3 class="loc__name">Bakers Bend</h3></div>
+          <p class="loc__desc">A road that loops through steep green hills. Worth the drive for the bends alone.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="near__also">
+    <p class="near__also-label">Also close by</p>
+    <div class="near__ticker">
+      <div class="near__ticker-track">
+        <ul>
+          <li>Thomas Seat View Point <i>12 km</i></li>
+          <li>Haputale Main View Point <i>12 km</i></li>
+          <li>Porawagala View Point <i>12 km</i></li>
+          <li>Dowa Raja Maha Viharaya <i>13 km</i></li>
+          <li>Ella View Point <i>22 km</i></li>
+          <li>Nildiya Pokuna <i>24 km</i></li>
+          <li>Horton Plains <i>28 km</i></li>
+          <li>Lanka Ella Falls <i>32 km</i></li>
+        </ul>
+        <ul aria-hidden="true">
+          <li>Thomas Seat View Point <i>12 km</i></li>
+          <li>Haputale Main View Point <i>12 km</i></li>
+          <li>Porawagala View Point <i>12 km</i></li>
+          <li>Dowa Raja Maha Viharaya <i>13 km</i></li>
+          <li>Ella View Point <i>22 km</i></li>
+          <li>Nildiya Pokuna <i>24 km</i></li>
+          <li>Horton Plains <i>28 km</i></li>
+          <li>Lanka Ella Falls <i>32 km</i></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- GUESTS -->
 <section class="guests" id="guests">
   <p class="eyebrow eyebrow--dark eyebrow--center">Guests</p>
@@ -395,15 +586,48 @@
     <p>Your hidden sanctuary.</p>
   </div>
   <div class="foot__cols">
-    <div><h4>Explore</h4><a href="#stay">Stay</a><a href="#slow">Experience</a><a href="#craft">Craft</a><a href="#dining">Dining</a><a href="#location">Location</a></div>
+    <div><h4>Explore</h4><a href="#stay">Stay</a><a href="#slow">Experience</a><a href="#craft">Craft</a><a href="#dining">Dining</a><a href="#location">Location</a><a href="#nearby">Nearby</a></div>
     <div><h4>Hotline</h4><a href="tel:+94777368264">+94 77 736 8264</a><a href="tel:+94572227143">+94 57 222 7143</a></div>
     <div><h4>Find us</h4><span>122/1A, Pahala Kadurugamuwa Road,</span><span>Diyatalawa, Sri Lanka</span></div>
   </div>
   <p class="foot__legal">© <span id="yr"></span> Top Mountain Resort</p>
 </footer>
 
+<!-- NEARBY: location viewer -->
+<div class="lx" id="lx" role="dialog" aria-modal="true" aria-labelledby="lx-title" hidden>
+  <div class="lx__bg"></div>
+  <div class="lx__media">
+    <img class="lx__img is-cur" alt="">
+    <img class="lx__img" alt="" aria-hidden="true">
+    <div class="lx__media-shade"></div>
+    <span class="lx__bar"><i></i></span>
+  </div>
+  <div class="lx__panel">
+    <div class="lx__top">
+      <span class="lx__count"><b>01</b> / 16</span>
+      <button type="button" class="lx__close" aria-label="Close">Close <span aria-hidden="true">✕</span></button>
+    </div>
+    <div class="lx__info">
+      <p class="lx__type eyebrow"></p>
+      <h3 class="lx__title" id="lx-title"></h3>
+      <p class="lx__km"><b></b> km from the resort</p>
+      <p class="lx__desc"></p>
+      <a class="btn btn--line lx__map" href="https://www.google.com/maps" target="_blank" rel="noopener">Open in Google Maps <span class="arr">→</span></a>
+    </div>
+    <div class="lx__foot">
+      <div class="lx__nav">
+        <button type="button" class="lx__prev" aria-label="Previous place">←</button>
+        <button type="button" class="lx__next" aria-label="Next place">→</button>
+      </div>
+      <div class="lx__thumbs" aria-label="All places"></div>
+    </div>
+  </div>
+</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="js/main.js?v=4"></script>
+<script src="js/nearby.js?v=1"></script>
+<script src="js/peacock.js?v=1"></script>
 </body>
 </html>
