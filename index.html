@@ -9,20 +9,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=20">
+<link rel="stylesheet" href="css/style.css?v=47">
 </head>
-<body class="is-loading">
-
-<!-- LOADER -->
-<div class="loader" aria-hidden="true">
-  <div class="loader__in">
-    <span class="loader__mark">Top Mountain</span>
-    <span class="loader__label">Entering the hills</span>
-    <span class="loader__bar"><i></i></span>
-  </div>
-</div>
-
-<div class="cursor" aria-hidden="true"><span class="cursor__label">View</span></div>
+<body>
 
 <!-- NAV -->
 <header class="nav">
@@ -37,7 +26,6 @@
     <a href="#craft">Craft</a>
     <a href="#dining">Dining</a>
     <a href="#location">Location</a>
-    <a href="#nearby">Nearby</a>
   </nav>
   <a class="btn btn--light btn--sm nav__book" href="#book">Book your stay <span class="arr">→</span></a>
   <button type="button" class="nav__toggle" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><i></i><i></i></button>
@@ -51,7 +39,6 @@
     <a href="#craft">Craft</a>
     <a href="#dining">Dining</a>
     <a href="#location">Location</a>
-    <a href="#nearby">Nearby</a>
   </nav>
   <div class="menu__foot">
     <a class="btn btn--light" href="#book">Book your stay <span class="arr">→</span></a>
@@ -71,12 +58,9 @@
   </div>
   <div class="hero__content">
     <p class="eyebrow hero__fade">Escape to Diyatalawa</p>
-    <h1 class="display lines hero__title" aria-label="Top Mountain Resort">
-      <span class="l" aria-hidden="true"><span><span class="gl">
-        <span class="gl__base">Top Mountain <em>Resort</em></span>
-        <span class="gl__r">Top Mountain <em>Resort</em></span>
-        <span class="gl__b">Top Mountain <em>Resort</em></span>
-      </span></span></span>
+    <h1 class="display hero__title" aria-label="Top Mountain Resort">
+      <span class="hero__name" aria-hidden="true">Top Mountain <em>Resort</em></span>
+      <span class="hero__veil" aria-hidden="true"></span>
     </h1>
     <p class="lede hero__fade">A 3-acre estate in the cool, pine-covered hills of Diyatalawa. Your hidden sanctuary.</p>
     <div class="hero__cta hero__fade">
@@ -87,172 +71,138 @@
   <span class="hero__scroll hero__fade">Scroll to enter</span>
 </section>
 
-<!-- CHAPTER ONE -->
-<section class="chapter" id="chapter">
-  <div class="chapter__frame">
-    <img class="chapter__bg" src="assets/img/m/cabin-mist.jpg?v=1" alt="" aria-hidden="true">
-    <picture class="chapter__pic">
-      <source media="(max-aspect-ratio: 3/2)" srcset="assets/img/m/cabin-mist.jpg?v=1">
-      <img class="chapter__img" src="assets/img/cabin-mist-wide.jpg?v=1" srcset="assets/img/m/cabin-mist-wide.jpg?v=1 1200w, assets/img/cabin-mist-wide.jpg?v=1 3960w" sizes="100vw" alt="A wooden cabana with morning mist drifting through the tea valley">
-    </picture>
-  </div>
-  <div class="chapter__title">
-    <p class="eyebrow eyebrow--center">Chapter one</p>
-    <h2 class="display display--center">Leave the city<br>below the mist.</h2>
-  </div>
-  <div class="chapter__cap">
-    <p class="eyebrow">The setting</p>
-    <p class="chapter__cap-text">Green roofs, hand-cut railings<br>and tea terraces across the valley.</p>
-  </div>
-</section>
-
-<!-- STAYS (horizontal) -->
+<!-- STAYS -->
 <section class="stays" id="stay">
   <div class="stays__track">
 
     <div class="stays__intro">
-      <p class="eyebrow">Chapter two · The stays</p>
+      <p class="eyebrow">The stays</p>
       <h2 class="display">Cabana, clay<br>or villa. Pick<br>your <em>hideaway.</em></h2>
       <p class="lede">Wooden cabanas, a mud house, villas and a whole bungalow, spread across the estate.</p>
-      <p class="stays__hint">Keep scrolling <span class="arr">→</span></p>
+      <ul class="stays__index">
+        <li><a href="#rooms"><span>01</span>Wooden Cabana<i>from Rs 8,000</i></a></li>
+        <li><a href="#rooms"><span>02</span>Mud House<i>from Rs 13,200</i></a></li>
+        <li><a href="#rooms"><span>03</span>The Villas<i>from Rs 16,500</i></a></li>
+        <li><a href="#stay-groups"><span>04</span>Bigger groups<i>from Rs 22,000</i></a></li>
+      </ul>
     </div>
 
-    <article class="stay">
-      <div class="stay__media" data-cursor>
-        <div class="stay__main"><img src="assets/img/cabin-bedroom.jpg?v=2" srcset="assets/img/m/cabin-bedroom.jpg?v=2 1200w, assets/img/cabin-bedroom.jpg?v=2 2000w" sizes="(max-width:899px) 100vw, 60vw" alt="Timber-lined cabin bedroom with a double bed and lantern light" loading="lazy"></div>
-        <div class="stay__side"><img src="assets/img/cabin-front.jpg?v=2" srcset="assets/img/m/cabin-front.jpg?v=2 1200w, assets/img/cabin-front.jpg?v=2 2400w" sizes="(max-width:899px) 100vw, 60vw" alt="Two-storey timber cabin with balconies" loading="lazy"></div>
-      </div>
-      <div class="stay__body">
-        <span class="stay__num">01</span>
-        <h3 class="stay__name">Wooden Cabana</h3>
-        <p>Rustic timber walls, a branch-rail balcony and mountain views. A double room for couples, or a family room.</p>
-        <dl class="specs">
-          <div><dt>Size</dt><dd>25 – 35 m²</dd></div>
-          <div><dt>Guests</dt><dd>2 – 4 adults, 1 child</dd></div>
-          <div><dt>View</dt><dd>Mountain</dd></div>
-          <div><dt>From</dt><dd>Rs 8,000</dd></div>
-        </dl>
-        <a class="btn btn--line" href="#book">Enquire <span class="arr">→</span></a>
-      </div>
-    </article>
+    <!-- room photo wall: built from js/rooms-data.js by js/rooms.js -->
+    <div class="rooms" id="rooms">
+      <div class="rooms__wall" aria-label="Rooms"></div>
+      <div class="rooms__more"><button type="button" class="btn btn--ghost rooms__toggle" aria-expanded="false">See more rooms</button></div>
+    </div>
 
-    <article class="stay">
-      <div class="stay__media" data-cursor>
-        <div class="stay__main"><img src="assets/img/mud-house.jpg?v=2" srcset="assets/img/m/mud-house.jpg?v=2 1200w, assets/img/mud-house.jpg?v=2 1416w" sizes="(max-width:899px) 100vw, 60vw" alt="Clay-walled mud house with a lantern-lit veranda" loading="lazy"></div>
-        <div class="stay__side"><img src="assets/img/mud-lounge.jpg?v=2" srcset="assets/img/m/mud-lounge.jpg?v=2 1200w, assets/img/mud-lounge.jpg?v=2 2000w" sizes="(max-width:899px) 100vw, 60vw" alt="Mud house sitting room with hand-made timber chairs and a rock wall" loading="lazy"></div>
+    <div class="more" id="stay-groups" data-label="Bigger groups">
+      <figure class="more__photo"><img src="assets/img/bungalow.jpg?v=1" srcset="assets/img/m/bungalow.jpg?v=1 1200w, assets/img/bungalow.jpg?v=1 2000w" sizes="(max-width:899px) 100vw, 45vw" alt="A white two-storey building with wide windows and a green roof, on a wooded hillside at the resort" loading="lazy"></figure>
+      <div class="more__head">
+        <p class="eyebrow eyebrow--dark">For bigger groups</p>
+        <h3 class="more__title">Bring <em>everyone.</em></h3>
+        <p class="more__note">Every stay comes with</p>
+        <ul class="more__amen">
+          <li>Free Wi-Fi</li><li>Hot water shower</li><li>Private bathroom</li><li>Kettle</li><li>Flat-screen TV</li><li>Private parking</li>
+        </ul>
       </div>
-      <div class="stay__body">
-        <span class="stay__num">02</span>
-        <h3 class="stay__name">Mud House</h3>
-        <p>A family villa with clay walls, a rock face for one side of the room, and a veranda hung with lanterns.</p>
-        <dl class="specs">
-          <div><dt>Size</dt><dd>40 m²</dd></div>
-          <div><dt>Guests</dt><dd>4 adults, 1 child</dd></div>
-          <div><dt>View</dt><dd>Nature</dd></div>
-          <div><dt>From</dt><dd>Rs 13,200</dd></div>
-        </dl>
-        <a class="btn btn--line" href="#book">Enquire <span class="arr">→</span></a>
+      <div class="more__side">
+        <ul class="more__list">
+          <li><b>Whole Bungalow</b><span>150 m² · 8 adults, 3 children</span><em><small>From</small>Rs 31,200</em></li>
+          <li><b>Luxury Cabana</b><span>150 m² · 12 adults, 4 children</span><em><small>From</small>Rs 38,000</em></li>
+          <li><b>Family Deluxe Villa</b><span>120 m² · 6 adults, 2 children</span><em><small>From</small>Rs 22,000</em></li>
+        </ul>
+        <a class="btn btn--dark" href="#book">Book your stay <span class="arr">→</span></a>
       </div>
-    </article>
-
-    <article class="stay">
-      <div class="stay__media" data-cursor>
-        <div class="stay__main"><img src="assets/img/room-window.jpg?v=2" srcset="assets/img/m/room-window.jpg?v=2 1200w, assets/img/room-window.jpg?v=2 1400w" sizes="(max-width:899px) 100vw, 60vw" alt="Bright room with floor-to-ceiling windows and a small table for two" loading="lazy"></div>
-        <div class="stay__side"><img src="assets/img/room-family.jpg?v=2" alt="Family villa room with two beds and a balcony" loading="lazy"></div>
-      </div>
-      <div class="stay__body">
-        <span class="stay__num">03</span>
-        <h3 class="stay__name">The Villas</h3>
-        <p>Bright double and family rooms with glass from floor to ceiling and a private balcony over the valley.</p>
-        <dl class="specs">
-          <div><dt>Size</dt><dd>45 – 120 m²</dd></div>
-          <div><dt>Guests</dt><dd>2 – 6 adults</dd></div>
-          <div><dt>Balcony</dt><dd>Private</dd></div>
-          <div><dt>From</dt><dd>Rs 16,500</dd></div>
-        </dl>
-        <a class="btn btn--line" href="#book">Enquire <span class="arr">→</span></a>
-      </div>
-    </article>
-
-    <div class="more">
-      <p class="eyebrow">For bigger groups</p>
-      <ul class="more__list">
-        <li><b>Whole Bungalow</b><span>150 m² · 8 adults, 3 children · from Rs 31,200</span></li>
-        <li><b>Luxury Cabana</b><span>150 m² · 12 adults, 4 children · from Rs 38,000</span></li>
-        <li><b>Family Deluxe Villa</b><span>120 m² · 6 adults, 2 children · from Rs 22,000</span></li>
-      </ul>
-      <p class="more__note">Every stay has free Wi-Fi, a hot water shower, a private bathroom, a kettle, a flat-screen TV and private parking.</p>
-      <a class="btn btn--light" href="#book">Book your stay <span class="arr">→</span></a>
     </div>
 
   </div>
-  <div class="stays__count"><span class="stays__cur">01</span><i></i><span>03</span></div>
 </section>
 
-<!-- SLOW (cream) -->
+<!-- EXPERIENCE (cream) -->
 <section class="slow" id="slow">
-  <div class="slow__text">
-    <p class="eyebrow eyebrow--dark" data-reveal>Chapter three · The pace</p>
+  <picture class="slow__bg" aria-hidden="true">
+    <source media="(max-aspect-ratio: 1/1)" srcset="assets/img/m/cabin-mist.jpg?v=1">
+    <img src="assets/img/cabin-mist-wide.jpg?v=1" srcset="assets/img/m/cabin-mist-wide.jpg?v=1 1200w, assets/img/cabin-mist-wide.jpg?v=1 3960w" sizes="100vw" alt="" loading="lazy">
+  </picture>
+  <figure class="slow__photo">
+    <img src="assets/img/estate-morning.jpg?v=1" srcset="assets/img/m/estate-morning.jpg?v=1 1200w, assets/img/estate-morning.jpg?v=1 2000w" sizes="(max-width:899px) 100vw, 46vw" alt="The resort's villa and cabanas among tall trees on a hillside, lit by early morning sun" style="object-position:36% 50%" loading="lazy">
+  </figure>
+
+  <div class="slow__body">
+    <p class="eyebrow eyebrow--dark" data-reveal>Experience</p>
     <h2 class="display display--dark lines">
       <span class="l"><span>Slow mornings.</span></span>
       <span class="l"><span><em>Long views.</em></span></span>
     </h2>
     <p class="lede lede--dark" data-reveal>Tea on the balcony, mist lifting off the hills, and a 3-acre estate to wander.</p>
-    <ol class="acts">
-      <li data-reveal><span>01</span>Campfire and stargazing</li>
-      <li data-reveal><span>02</span>Natural spring and rope swing</li>
-      <li data-reveal><span>03</span>Tea-estate walks</li>
-      <li data-reveal><span>04</span>Panoramic viewing deck</li>
-      <li data-reveal><span>05</span>Lawn cricket</li>
-      <li data-reveal><span>06</span>Evening badminton</li>
-    </ol>
-  </div>
-  <div class="slow__art">
-    <div class="slow__a pimg" data-speed="0.6"><img src="assets/img/balcony.jpg?v=2" alt="Balcony with a table for two overlooking the fields" loading="lazy"></div>
-    <div class="slow__b pimg" data-speed="-0.5"><img src="assets/img/veranda.jpg?v=2" alt="Covered veranda with a long timber table, looking out to the hills" loading="lazy"></div>
-    <p class="slow__cap">Diyatalawa · 3 acres of green</p>
+
+    <h3 class="slow__sub" data-reveal>On the estate</h3>
+    <ul class="slow__acts" data-reveal>
+      <li>Campfire and stargazing</li>
+      <li>Natural spring and rope swing</li>
+      <li>Tea-estate walks</li>
+      <li>Panoramic viewing deck</li>
+      <li>Lawn cricket</li>
+      <li>Evening badminton</li>
+    </ul>
   </div>
 </section>
 
-<!-- PEACOCK -->
+<!-- PEACOCK: three moments of one film, each looping in its own panel -->
 <section class="peacock" id="peacock">
-  <canvas class="peacock__ambient" width="36" height="64" aria-hidden="true"></canvas>
-  <div class="peacock__text">
-    <p class="eyebrow" data-reveal>Seen from the balcony</p>
-    <h2 class="display lines">
-      <span class="l"><span>A visitor</span></span>
-      <span class="l"><span>in <em>blue.</em></span></span>
-    </h2>
+  <div class="peacock__head">
+    <div>
+      <p class="eyebrow" data-reveal>Seen from the balcony</p>
+      <h2 class="display lines">
+        <span class="l"><span>A visitor</span></span>
+        <span class="l"><span>in <em>blue.</em></span></span>
+      </h2>
+    </div>
     <p class="lede" data-reveal>A peacock landed on a balcony rail at the resort, took in the valley for a while, then flew down to the roof below.</p>
   </div>
 
-  <div class="peacock__stage">
-    <div class="peacock__rings" aria-hidden="true"><i></i><i></i><i></i></div>
-    <div class="peacock__frame">
-      <video class="peacock__video" muted loop playsinline preload="none" poster="assets/video/peacock-poster.jpg" aria-label="A peacock on the resort's balcony rail takes off and flies down to a roof, partly in slow motion">
-        <source src="assets/video/peacock.mp4" type="video/mp4">
-      </video>
-      <div class="peacock__shade"></div>
-      <span class="peacock__slow" aria-hidden="true"><i></i>Slow motion · ¼ speed</span>
-      <button type="button" class="peacock__toggle" aria-label="Pause video"><span class="peacock__icon"></span></button>
-      <p class="peacock__cap" aria-hidden="true"><span class="peacock__cap-num">01</span><span class="peacock__cap-txt">Close up</span></p>
-      <span class="peacock__progress" aria-hidden="true"><i></i></span>
-    </div>
-  </div>
+  <ul class="peacock__strip">
+    <li class="pc-panel">
+      <button type="button" class="pc-panel__btn" data-t="0" aria-label="Close up. Watch the full film from this moment">
+        <video class="pc-panel__video" muted loop playsinline preload="none" poster="assets/video/pc-close.jpg?v=1" style="object-position:50% 22%" aria-hidden="true">
+          <source src="assets/video/pc-close.mp4?v=1" type="video/mp4">
+        </video>
+        <span class="pc-panel__num">01</span>
+        <span class="pc-panel__play" aria-hidden="true"><i></i>Full film</span>
+        <span class="pc-panel__cap"><b>Close up</b><span>Deep blue, a few feet away</span></span>
+      </button>
+    </li>
+    <li class="pc-panel">
+      <button type="button" class="pc-panel__btn" data-t="2.87" aria-label="On the rail. Watch the full film from this moment">
+        <video class="pc-panel__video" muted loop playsinline preload="none" poster="assets/video/pc-rail.jpg?v=1" style="object-position:50% 40%" aria-hidden="true">
+          <source src="assets/video/pc-rail.mp4?v=1" type="video/mp4">
+        </video>
+        <span class="pc-panel__num">02</span>
+        <span class="pc-panel__play" aria-hidden="true"><i></i>Full film</span>
+        <span class="pc-panel__cap"><b>On the rail</b><span>Taking in the valley</span></span>
+      </button>
+    </li>
+    <li class="pc-panel">
+      <button type="button" class="pc-panel__btn" data-t="7.33" aria-label="Take-off, in slow motion. Watch the full film from this moment">
+        <video class="pc-panel__video" muted loop playsinline preload="none" poster="assets/video/pc-flight.jpg?v=1" style="object-position:50% 58%" aria-hidden="true">
+          <source src="assets/video/pc-flight.mp4?v=1" type="video/mp4">
+        </video>
+        <span class="pc-panel__num">03</span>
+        <span class="pc-panel__chip" aria-hidden="true"><i></i>¼ speed</span>
+        <span class="pc-panel__play" aria-hidden="true"><i></i>Full film</span>
+        <span class="pc-panel__cap"><b>Take-off</b><span>Wings open, at quarter speed</span></span>
+      </button>
+    </li>
+  </ul>
 
-  <ol class="peacock__steps" aria-label="Jump to a moment in the video">
-    <li data-reveal><button type="button" data-t="0"><span class="peacock__num">01</span><span class="peacock__label">Close up</span><i class="peacock__bar"><b></b></i></button></li>
-    <li data-reveal><button type="button" data-t="2.87"><span class="peacock__num">02</span><span class="peacock__label">On the rail</span><i class="peacock__bar"><b></b></i></button></li>
-    <li data-reveal><button type="button" data-t="7.33" data-slow="1"><span class="peacock__num">03</span><span class="peacock__label">Take-off</span><i class="peacock__bar"><b></b></i></button></li>
-    <li data-reveal><button type="button" data-t="12.63"><span class="peacock__num">04</span><span class="peacock__label">Landing</span><i class="peacock__bar"><b></b></i></button></li>
-  </ol>
+  <div class="peacock__foot" data-reveal>
+    <button type="button" class="peacock__watch" data-t="0"><span class="peacock__watch-icon" aria-hidden="true"><i></i></span>Watch the full film<span class="peacock__watch-len">0:15</span></button>
+  </div>
 </section>
 
 <!-- CRAFT -->
 <section class="craft" id="craft">
   <div class="craft__head">
     <div>
-      <p class="eyebrow" data-reveal>Chapter four · The details</p>
+      <p class="eyebrow" data-reveal>Craft</p>
       <h2 class="display lines">
         <span class="l"><span>Made by <em>hand.</em></span></span>
       </h2>
@@ -289,43 +239,25 @@
 </section>
 
 <!-- DINING -->
-<section class="dining" id="dining">
-  <div class="dining__frame pimg-in" data-cursor>
-    <img src="assets/img/dining-crop.jpg?v=2" srcset="assets/img/m/dining-crop.jpg?v=2 1200w, assets/img/dining-crop.jpg?v=2 2000w" sizes="(max-width:899px) 100vw, 60vw" alt="Open-air dining deck among the treetops" loading="lazy">
-    <div class="dining__shade"></div>
-    <div class="dining__text">
-      <p class="eyebrow" data-reveal>Chapter five · Taste of the hills</p>
+<section class="eve" id="dining">
+  <div class="eve__head">
+    <div>
+      <p class="eyebrow" data-reveal>Dining</p>
       <h2 class="display lines">
         <span class="l"><span>A table</span></span>
         <span class="l"><span>above the <em>trees.</em></span></span>
       </h2>
-      <p class="lede" data-reveal>Sri Lankan curries and international favourites, campfire BBQ and sunset Ceylon tea, with the valley on three sides.</p>
     </div>
-  </div>
-</section>
-
-<!-- EVENINGS -->
-<section class="eve" id="evenings">
-  <div class="eve__head">
-    <div>
-      <p class="eyebrow" data-reveal>Chapter six · After dusk</p>
-      <h2 class="display lines">
-        <span class="l"><span>Fire, food</span></span>
-        <span class="l"><span>and <em>family.</em></span></span>
-      </h2>
-    </div>
-    <p class="lede eve__lede" data-reveal>When the evening mist comes down over Diyatalawa, the fire is lit, the tea is hot and the long table fills up.</p>
+    <p class="lede eve__lede" data-reveal>Sri Lankan curries and international favourites, campfire BBQ and sunset Ceylon tea, with the valley on three sides.</p>
   </div>
   <div class="eve__grid">
-    <figure class="eve__card" data-cursor>
-      <div class="slot slot--fire">
-        <img src="assets/img/campfire.jpg?v=1" alt="Friends around a campfire between two tents, under a sky full of stars" loading="lazy" onerror="this.parentNode.classList.add('is-empty');this.remove()">
-        <div class="flies"></div>
-        <span class="slot__note">Photo to add · campfire.jpg</span>
+    <figure class="eve__card">
+      <div class="slot">
+        <img src="assets/img/dining-crop.jpg?v=2" srcset="assets/img/m/dining-crop.jpg?v=2 1200w, assets/img/dining-crop.jpg?v=2 2000w" sizes="(max-width:899px) 100vw, 60vw" alt="Open-air dining deck among the treetops" loading="lazy">
       </div>
-      <figcaption><span>01</span><b>Campfire and stargazing</b><p>A crackling fire, hot Ceylon tea and a sky full of stars.</p></figcaption>
+      <figcaption><span>01</span><b>The dining deck</b><p>Open-air tables among the treetops, with the valley on three sides.</p></figcaption>
     </figure>
-    <figure class="eve__card" data-cursor>
+    <figure class="eve__card">
       <div class="slot slot--meal">
         <img src="assets/img/family-meal.jpg?v=2" alt="Meat sizzling on a row of grills as friends gather in the smoke and low evening sun" loading="lazy" onerror="this.parentNode.classList.add('is-empty');this.remove()">
         <span class="slot__note">Photo to add · family-meal.jpg</span>
@@ -335,59 +267,65 @@
   </div>
 </section>
 
-<!-- ONE DAY -->
+<!-- ONE DAY: the sky moves from morning to night while the Mud House lights up -->
 <section class="day" id="day">
-  <div class="day__stage">
-    <img class="day__img" src="assets/img/cabin-front.jpg?v=2" srcset="assets/img/m/cabin-front.jpg?v=2 1200w, assets/img/cabin-front.jpg?v=2 2400w" sizes="(max-width:899px) 100vw, 60vw" alt="The wooden cabana, shown from morning to night">
-    <div class="day__warm"></div>
-    <div class="day__night"></div>
-    <div class="day__glows">
-      <i style="left:51%;top:23%"></i><i style="left:38.5%;top:40.2%"></i><i style="left:55.2%;top:40.2%"></i>
-      <i style="left:29.2%;top:60.2%"></i><i style="left:42%;top:60.7%"></i><i style="left:58.9%;top:60.1%"></i>
-      <i class="win" style="left:47%;top:48%"></i><i class="win" style="left:75%;top:48%"></i>
+  <div class="day__sky" aria-hidden="true">
+    <i class="day__sky--morning"></i><i class="day__sky--noon"></i><i class="day__sky--gold"></i><i class="day__sky--blue"></i><i class="day__sky--night"></i>
+    <span class="day__stars"></span>
+  </div>
+
+  <div class="day__panel">
+    <p class="eyebrow day__eyebrow">From morning to night</p>
+    <h2 class="day__title">One day, <em>one hillside.</em></h2>
+    <div class="day__dial" aria-hidden="true">
+      <svg viewBox="0 0 240 128">
+        <defs>
+          <linearGradient id="dayArc" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#e6b566"/><stop offset=".55" stop-color="#f3d39a"/><stop offset="1" stop-color="#a9bcff"/>
+          </linearGradient>
+        </defs>
+        <path class="day__arc" d="M10 120 A110 110 0 0 1 230 120"/>
+        <path class="day__arc-fill" d="M10 120 A110 110 0 0 1 230 120" pathLength="1"/>
+        <line class="day__horizon" x1="0" y1="120" x2="240" y2="120"/>
+        <circle class="day__orb" cx="10" cy="120" r="7"/>
+      </svg>
+      <div class="day__clock">06:10</div>
     </div>
-    <div class="flies"></div>
+    <p class="day__phase">Morning</p>
+    <p class="day__line">Mist lifts off the valley, and the tea is on the veranda.</p>
+    <ol class="day__marks" aria-hidden="true">
+      <li class="is-on">Morning</li><li>Afternoon</li><li>Golden hour</li><li>Blue hour</li><li>Night</li>
+    </ol>
+    <p class="day__hint">Keep scrolling. Watch the light change.</p>
   </div>
-  <div class="day__vignette"></div>
-  <div class="day__intro">
-    <p class="eyebrow">One day, one hillside</p>
-    <p class="lede">Keep scrolling. Watch the light change.</p>
-  </div>
-  <h2 class="display day__quote">When the lanterns<br>come on, the hills<br>go <em>quiet.</em></h2>
-  <div class="day__clock">06:10</div>
-  <ol class="day__phases">
-    <li class="is-on">Morning</li><li>Afternoon</li><li>Golden hour</li><li>Blue hour</li><li>Night</li>
-  </ol>
+
+  <figure class="day__frame">
+    <img class="day__img" src="assets/img/mud-house.jpg?v=2" srcset="assets/img/m/mud-house.jpg?v=2 1200w, assets/img/mud-house.jpg?v=2 1416w" sizes="(max-width:899px) 100vw, 56vw" alt="The clay-walled Mud House with lanterns hanging along its veranda, shown from morning to night">
+    <div class="day__warm"></div>
+    <div class="day__dusk"></div>
+    <div class="day__night"></div>
+    <div class="day__glows" aria-hidden="true">
+      <i class="porch" style="left:34%;top:44%"></i>
+      <i style="left:20.1%;top:35.6%"></i><i style="left:42.6%;top:33.7%"></i><i style="left:61.7%;top:46.5%"></i>
+      <i class="sm" style="left:15.7%;top:41.4%"></i><i class="sm" style="left:22.2%;top:41.4%"></i><i class="sm" style="left:29.9%;top:39.5%"></i><i class="sm" style="left:38%;top:37.6%"></i>
+      <i class="win" style="left:31.1%;top:53.5%"></i><i class="win" style="left:48.8%;top:57%"></i>
+    </div>
+    <figcaption class="day__quote">When the lanterns come on, the hills go <em>quiet.</em></figcaption>
+  </figure>
 </section>
 
-<!-- LOCATION -->
-<section class="reach" id="location">
-  <div class="reach__head">
-    <p class="eyebrow" data-reveal>Getting here</p>
-    <h2 class="display lines">
-      <span class="l"><span>Hidden,</span></span>
-      <span class="l"><span>not hard to <em>find.</em></span></span>
-    </h2>
-    <p class="lede" data-reveal>122/1A, Pahala Kadurugamuwa Road, Diyatalawa, Sri Lanka.</p>
-    <a class="btn btn--line" data-reveal href="https://www.google.com/maps/search/?api=1&amp;query=Top+Mountain+Resort+Diyatalawa" target="_blank" rel="noopener">Get directions <span class="arr">→</span></a>
-  </div>
-  <ul class="reach__list">
-    <li data-reveal><span>Town</span><b>Diyatalawa</b></li>
-    <li data-reveal><span>Close by</span><b>Bandarawela</b></li>
-    <li data-reveal><span>Day trips</span><b>Ella · Horton Plains</b></li>
-    <li data-reveal><span>Tea-estate trails</span><b>Outside your door</b></li>
-  </ul>
-</section>
-
-<!-- NEARBY LOCATIONS -->
-<section class="near" id="nearby">
+<!-- LOCATION + NEARBY -->
+<section class="near" id="location">
+  <img class="near__bg" src="assets/img/estate-aerial.jpg?v=1" srcset="assets/img/m/estate-aerial.jpg?v=1 1200w, assets/img/estate-aerial.jpg?v=1 2000w" sizes="100vw" alt="" aria-hidden="true" loading="lazy">
   <div class="near__head">
     <div>
-      <p class="eyebrow" data-reveal>Nearby locations</p>
+      <p class="eyebrow" data-reveal>Location</p>
       <h2 class="display lines">
-        <span class="l"><span>Waterfalls, peaks</span></span>
-        <span class="l"><span>and <em>tea country.</em></span></span>
+        <span class="l"><span>Hidden,</span></span>
+        <span class="l"><span>not hard to <em>find.</em></span></span>
       </h2>
+      <p class="lede" data-reveal>122/1A, Pahala Kadurugamuwa Road, Diyatalawa, Sri Lanka.</p>
+      <a class="btn btn--ghost near__dir" data-reveal href="https://www.google.com/maps/search/?api=1&amp;query=Top+Mountain+Resort+Diyatalawa" target="_blank" rel="noopener">Get directions <span class="arr">→</span></a>
     </div>
     <div class="near__side">
       <p class="lede near__lede" data-reveal>Sixteen places within a day trip of the resort, from 13 km to 51 km away.</p>
@@ -517,33 +455,8 @@
           <li>Horton Plains <i>28 km</i></li>
           <li>Lanka Ella Falls <i>32 km</i></li>
         </ul>
-        <ul aria-hidden="true">
-          <li>Thomas Seat View Point <i>12 km</i></li>
-          <li>Haputale Main View Point <i>12 km</i></li>
-          <li>Porawagala View Point <i>12 km</i></li>
-          <li>Dowa Raja Maha Viharaya <i>13 km</i></li>
-          <li>Ella View Point <i>22 km</i></li>
-          <li>Nildiya Pokuna <i>24 km</i></li>
-          <li>Horton Plains <i>28 km</i></li>
-          <li>Lanka Ella Falls <i>32 km</i></li>
-        </ul>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- GUESTS -->
-<section class="guests" id="guests">
-  <p class="eyebrow eyebrow--dark eyebrow--center">Guests</p>
-  <div class="quotes">
-    <blockquote class="quote is-on"><p>“We came for two nights and asked to stay for four.”</p><cite>Sample review · replace with a real one</cite></blockquote>
-    <blockquote class="quote"><p>“The cabana balcony at sunrise is the whole reason to come.”</p><cite>Sample review · replace with a real one</cite></blockquote>
-    <blockquote class="quote"><p>“Campfire, hot tea and a sky full of stars.”</p><cite>Sample review · replace with a real one</cite></blockquote>
-  </div>
-  <div class="quotes__nav">
-    <button type="button" class="q-prev" aria-label="Previous review">←</button>
-    <span class="q-dots"><i class="is-on"></i><i></i><i></i></span>
-    <button type="button" class="q-next" aria-label="Next review">→</button>
   </div>
 </section>
 
@@ -552,7 +465,6 @@
   <div class="book__media">
     <img src="assets/img/cabin-hero.jpg?v=2" srcset="assets/img/m/cabin-hero.jpg?v=2 1200w, assets/img/cabin-hero.jpg?v=2 2400w" sizes="(max-width:899px) 100vw, 60vw" alt="" loading="lazy">
     <div class="book__night"></div>
-    <div class="flies"></div>
   </div>
   <div class="book__content">
     <p class="eyebrow" data-reveal>Your stay</p>
@@ -581,12 +493,13 @@
 </main>
 
 <footer class="foot">
+  <img class="foot__bg" src="assets/img/villa-aerial.jpg?v=1" srcset="assets/img/m/villa-aerial.jpg?v=1 1200w, assets/img/villa-aerial.jpg?v=1 2000w" sizes="100vw" alt="" aria-hidden="true" loading="lazy">
   <div class="foot__brand">
     <div class="foot__logo">Top Mountain Resort</div>
     <p>Your hidden sanctuary.</p>
   </div>
   <div class="foot__cols">
-    <div><h4>Explore</h4><a href="#stay">Stay</a><a href="#slow">Experience</a><a href="#craft">Craft</a><a href="#dining">Dining</a><a href="#location">Location</a><a href="#nearby">Nearby</a></div>
+    <div><h4>Explore</h4><a href="#stay">Stay</a><a href="#slow">Experience</a><a href="#craft">Craft</a><a href="#dining">Dining</a><a href="#location">Location</a></div>
     <div><h4>Hotline</h4><a href="tel:+94777368264">+94 77 736 8264</a><a href="tel:+94572227143">+94 57 222 7143</a></div>
     <div><h4>Find us</h4><span>122/1A, Pahala Kadurugamuwa Road,</span><span>Diyatalawa, Sri Lanka</span></div>
   </div>
@@ -612,7 +525,7 @@
       <h3 class="lx__title" id="lx-title"></h3>
       <p class="lx__km"><b></b> km from the resort</p>
       <p class="lx__desc"></p>
-      <a class="btn btn--line lx__map" href="https://www.google.com/maps" target="_blank" rel="noopener">Open in Google Maps <span class="arr">→</span></a>
+      <a class="btn btn--ghost lx__map" href="https://www.google.com/maps" target="_blank" rel="noopener">Open in Google Maps <span class="arr">→</span></a>
     </div>
     <div class="lx__foot">
       <div class="lx__nav">
@@ -624,10 +537,72 @@
   </div>
 </div>
 
+<!-- PEACOCK: the full film (filled and run by js/peacock.js) -->
+<div class="pf" id="pf" role="dialog" aria-modal="true" aria-label="A visitor in blue: the full film" hidden>
+  <div class="pf__bg"><canvas class="pf__ambient" width="36" height="64" aria-hidden="true"></canvas></div>
+  <div class="pf__stage">
+    <video class="pf__video" muted loop playsinline preload="none" poster="assets/video/peacock-poster.jpg?v=2" aria-label="A peacock on the resort's balcony rail takes off and flies down to a roof, partly in slow motion">
+      <source src="assets/video/peacock-720.mp4?v=1" type="video/mp4" media="(min-width: 900px)">
+      <source src="assets/video/peacock.mp4?v=2" type="video/mp4">
+    </video>
+    <div class="pf__shade"></div>
+    <span class="pf__slow" aria-hidden="true"><i></i>Slow motion · ¼ speed</span>
+    <p class="pf__cap" aria-hidden="true"><span class="pf__cap-num">01</span><span class="pf__cap-txt">Close up</span></p>
+    <span class="pf__progress" aria-hidden="true"><i></i></span>
+  </div>
+  <aside class="pf__side">
+    <div class="pf__top">
+      <button type="button" class="pf__toggle" aria-label="Pause film"><span class="pf__icon"></span></button>
+      <button type="button" class="pf__close" aria-label="Close">Close <span aria-hidden="true">✕</span></button>
+    </div>
+    <div class="pf__info">
+      <p class="eyebrow pf__eyebrow">Seen from the balcony</p>
+      <h3 class="pf__title">A visitor <em>in blue.</em></h3>
+      <ol class="pf__chapters" aria-label="Jump to a moment">
+        <li><button type="button" data-t="0"><span>01</span>Close up<i>0:00</i></button></li>
+        <li><button type="button" data-t="2.87"><span>02</span>On the rail<i>0:03</i></button></li>
+        <li><button type="button" data-t="7.33"><span>03</span>Take-off<small>¼ speed</small><i>0:07</i></button></li>
+        <li><button type="button" data-t="12.63"><span>04</span>Landing<i>0:13</i></button></li>
+      </ol>
+    </div>
+  </aside>
+</div>
+
+<!-- STAYS: room photo viewer (filled by js/rooms.js) -->
+<div class="rv" id="rv" role="dialog" aria-modal="true" aria-labelledby="rv-title" hidden>
+  <div class="rv__bg"></div>
+  <div class="rv__stage">
+    <img class="rv__img" alt="">
+    <button type="button" class="rv__arrow rv__prev" aria-label="Previous photo">←</button>
+    <button type="button" class="rv__arrow rv__next" aria-label="Next photo">→</button>
+  </div>
+  <aside class="rv__panel">
+    <div class="rv__top">
+      <span class="rv__count"></span>
+      <button type="button" class="rv__close" aria-label="Close">Close <span aria-hidden="true">✕</span></button>
+    </div>
+    <div class="rv__info">
+      <p class="eyebrow rv__cat"></p>
+      <h3 class="rv__title" id="rv-title"></h3>
+      <dl class="rv__specs"></dl>
+      <p class="rv__price"></p>
+      <a class="btn btn--light rv__book" href="#book">Enquire about this room <span class="arr">→</span></a>
+    </div>
+    <div class="rv__thumbs" aria-label="All photos of this room"></div>
+  </aside>
+</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="js/main.js?v=4"></script>
-<script src="js/nearby.js?v=1"></script>
-<script src="js/peacock.js?v=1"></script>
+<script src="js/main.js?v=11"></script>
+<script src="js/day.js?v=2"></script>
+<script src="js/rooms-data.js?v=1"></script>
+<script src="js/rooms.js?v=6"></script>
+<script src="js/stays.js?v=6"></script>
+<script src="js/slow.js?v=3"></script>
+<script src="js/nearby.js?v=5"></script>
+<script src="js/peacock.js?v=4"></script>
+<script src="js/config.js?v=2"></script>
+<script src="js/hero-video.js?v=1"></script>
 </body>
 </html>

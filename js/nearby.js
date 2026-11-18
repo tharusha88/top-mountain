@@ -1,6 +1,6 @@
 /* Top Mountain Resort — nearby locations
-   Drifting photo rows (scroll-reactive, draggable) and a viewer whose
-   photo and title morph out of whichever card you opened, and back. */
+   Two photo rows that move with page scroll (and can be dragged), and a viewer
+   whose photo and title morph out of the card you opened, and back. */
 (() => {
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -106,7 +106,7 @@
     });
   }
 
-  // motion: slow drift, faster with page scroll (and reversing on scroll up), throwable by drag
+  // motion: follows page scroll (and reverses on scroll up), throwable by drag; still when the page is still
   let running = false, visible = false, raf = 0, last = 0, lastY = scrollY, sDir = 1, boost = 0, kick = 0;
   let isOpen = false;
   const BASE = innerWidth < 900 ? 26 : 38; // px per second
@@ -122,7 +122,7 @@
       let v = r.dragV;
       if (!r.drag) {
         r.dragV *= Math.pow(0.03, dt);
-        v = r.dir * sDir * BASE * (1 + boost + kick) * r.hold + r.dragV;
+        v = r.dir * sDir * BASE * (boost + kick) * r.hold + r.dragV; // moves only while the page scrolls (no idle drift)
         r.x += v * dt;
       }
       r.skew += (clamp(-v / 140, -3, 3) - r.skew) * Math.min(1, dt * 6);
@@ -446,7 +446,7 @@
 
   function close() {
     if (!isOpen) return;
-    if (openTl) { openTl.progress(1); openTl.kill(); openTl = null; }
+    if (openTl) { const tl = openTl; openTl = null; tl.progress(1); tl.kill(); } // progress(1) runs onComplete, which also clears openTl
     if (busy) return;
     busy = true; stopShow();
     const p = places[cur];
@@ -537,7 +537,7 @@
   });
   media.addEventListener('pointercancel', () => { sx = null; });
 
-  /* ---------- entrance: rows sweep in and rush, then settle ---------- */
+  /* ---------- entrance ---------- */
   if (G && window.ScrollTrigger) {
     G.registerPlugin(window.ScrollTrigger);
     rows.forEach((r, k) => {

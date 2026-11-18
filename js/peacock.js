@@ -1,140 +1,171 @@
-/* Top Mountain Resort — peacock flight video
-   Plays only while on screen, keeps captions, chapter list and progress in step
-   with the video, tints the section with the video's own colours, and tilts the
-   frame toward the pointer. */
+/* Top Mountain Resort — peacock film strip
+   Three panels each loop one moment of the film and play only while on screen.
+   A panel, or "Watch the full film", opens the whole edit in a viewer that keeps
+   its caption, chapters, progress and colour glow in step with the film. */
 (() => {
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const sec = $('.peacock');
-  if (!sec) return;
+  const film = $('#pf');
+  if (!sec || !film) return;
 
-  const video = $('.peacock__video', sec);
-  const frame = $('.peacock__frame', sec);
-  const stage = $('.peacock__stage', sec);
-  const toggle = $('.peacock__toggle', sec);
-  const capNum = $('.peacock__cap-num', sec);
-  const capTxt = $('.peacock__cap-txt', sec);
-  const prog = $('.peacock__progress i', sec);
-  const canvas = $('.peacock__ambient', sec);
-  const ctx = canvas.getContext('2d');
-  const steps = $$('.peacock__steps button', sec).map(b => ({
-    b, t: parseFloat(b.dataset.t), bar: $('.peacock__bar b', b), label: $('.peacock__label', b).textContent.trim()
-  }));
-  const SLOW = [7.05, 13.0]; // the quarter-speed stretch of the edit, in seconds
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const fine = matchMedia('(hover:hover) and (pointer:fine)').matches;
   const G = !reduce && window.gsap ? window.gsap : null;
   const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
   const pad2 = n => String(n).padStart(2, '0');
+  const play = v => {
+    if (v.preload === 'none') v.preload = 'auto';
+    const p = v.play();
+    if (p && p.catch) p.catch(() => {});
+  };
 
-  let userPaused = reduce; // reduced motion: wait for a click
-  let visible = false, raf = 0, cur = 0, lastPaint = 0;
+  /* ---------- the strip ---------- */
+  const panels = $$('.pc-panel__video', sec);
+  const onScreen = new Set();
+  let filmOpen = false;
+  if (!reduce) {
+    const io = new IntersectionObserver(entries => entries.forEach(e => {
+      if (e.isIntersecting) { onScreen.add(e.target); if (!filmOpen) play(e.target); }
+      else { onScreen.delete(e.target); e.target.pause(); }
+    }), { threshold: 0.35 });
+    panels.forEach(v => io.observe(v));
+  }
+  const resumePanels = () => { if (!reduce && !filmOpen && !document.hidden) onScreen.forEach(play); };
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) { panels.forEach(v => v.pause()); video.pause(); }
+    else if (filmOpen) play(video); else resumePanels();
+  });
 
-  /* ambient glow: a tiny copy of the picture, blurred huge behind everything */
-  const paint = src => { try { ctx.drawImage(src, 0, 0, canvas.width, canvas.height); } catch (_) { /* not ready */ } };
-  const poster = new Image();
-  poster.onload = () => paint(poster);
-  poster.src = video.getAttribute('poster');
+  // a slight 3D tilt toward the pointer
+  if (fine && !reduce) $$('.pc-panel__btn', sec).forEach(btn => {
+    btn.addEventListener('pointermove', e => {
+      const r = btn.getBoundingClientRect();
+      btn.style.setProperty('--ry', ((e.clientX - r.left) / r.width - 0.5) * 8 + 'deg');
+      btn.style.setProperty('--rx', (0.5 - (e.clientY - r.top) / r.height) * 6 + 'deg');
+    });
+    btn.addEventListener('pointerleave', () => { btn.style.setProperty('--rx', '0deg'); btn.style.setProperty('--ry', '0deg'); });
+  });
+
+  // entrance: the panels rise in one after another, their pictures uncovering
+  if (G && window.ScrollTrigger) {
+    G.registerPlugin(window.ScrollTrigger);
+    const items = $$('.pc-panel', sec);
+    G.set(items, { opacity: 0, y: 60 });
+    window.ScrollTrigger.create({
+      trigger: $('.peacock__strip', sec), start: 'top 82%', once: true,
+      onEnter: () => {
+        G.to(items, { opacity: 1, y: 0, duration: 1.2, ease: 'power3.out', stagger: 0.14, clearProps: 'opacity,transform' });
+        G.fromTo($$('.pc-panel__btn', sec), { clipPath: 'inset(30% 0% 0% 0% round 16px)' }, { clipPath: 'inset(0% 0% 0% 0% round 16px)', duration: 1.4, ease: 'power3.out', stagger: 0.14, clearProps: 'clipPath' });
+      }
+    });
+  }
+
+  /* ---------- the full film ---------- */
+  const video = $('.pf__video', film);
+  const canvas = $('.pf__ambient', film);
+  const ctx = canvas.getContext('2d');
+  const capNum = $('.pf__cap-num', film);
+  const capTxt = $('.pf__cap-txt', film);
+  const prog = $('.pf__progress i', film);
+  const toggle = $('.pf__toggle', film);
+  const closeBtn = $('.pf__close', film);
+  const outside = $$('body > header, body > main, body > footer, #menu');
+  const chapters = $$('.pf__chapters button', film).map(b => ({
+    b, t: parseFloat(b.dataset.t),
+    label: [...b.childNodes].filter(n => n.nodeType === 3).map(n => n.textContent).join('').trim()
+  }));
+  const SLOW = [7.05, 13.0]; // the quarter-speed stretch of the edit, in seconds
+  let cur = -1, raf = 0, lastPaint = 0, opener = null;
 
   const duration = () => (isFinite(video.duration) && video.duration) || 15.33;
-  const chapterAt = t => steps.reduce((k, s, i) => (t >= s.t ? i : k), 0);
-
+  const paint = src => { try { ctx.drawImage(src, 0, 0, canvas.width, canvas.height); } catch (_) { /* not ready */ } };
   const setChapter = k => {
     if (k === cur) return;
     cur = k;
-    steps.forEach((s, i) => s.b.classList.toggle('is-on', i === k));
-    const swap = () => { capNum.textContent = pad2(k + 1); capTxt.textContent = steps[k].label; };
+    chapters.forEach((c, i) => c.b.classList.toggle('is-on', i === k));
+    const swap = () => { capNum.textContent = pad2(k + 1); capTxt.textContent = chapters[k].label; };
     if (!G) { swap(); return; }
     G.timeline()
-      .to([capNum, capTxt], { yPercent: -120, opacity: 0, duration: 0.28, ease: 'power2.in', stagger: 0.04, overwrite: true })
+      .to([capNum, capTxt], { yPercent: -120, opacity: 0, duration: 0.25, ease: 'power2.in', stagger: 0.04, overwrite: true })
       .add(swap)
-      .fromTo([capNum, capTxt], { yPercent: 120, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.6, ease: 'power3.out', stagger: 0.06 });
+      .fromTo([capNum, capTxt], { yPercent: 120, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.55, ease: 'power3.out', stagger: 0.06 });
   };
-
   const sync = () => {
     const t = video.currentTime, d = duration();
-    const k = chapterAt(t);
+    const k = chapters.reduce((a, c, i) => (t >= c.t ? i : a), 0);
     setChapter(k);
     prog.style.transform = `scaleX(${clamp(t / d, 0, 1)})`;
-    steps.forEach((s, i) => {
-      const end = i < steps.length - 1 ? steps[i + 1].t : d;
-      const p = i < k ? 1 : i > k ? 0 : clamp((t - s.t) / (end - s.t), 0, 1);
-      s.bar.style.transform = `scaleX(${p})`;
+    chapters.forEach((c, i) => {
+      const end = i < chapters.length - 1 ? chapters[i + 1].t : d;
+      c.b.style.setProperty('--p', i < k ? 1 : i > k ? 0 : clamp((t - c.t) / (end - c.t), 0, 1).toFixed(4));
     });
-    sec.classList.toggle('is-slow', t >= SLOW[0] && t <= SLOW[1]);
+    film.classList.toggle('is-slow', t >= SLOW[0] && t <= SLOW[1]);
   };
-
-  /* pointer tilt */
-  let tx = 0, ty = 0, rx = 0, ry = 0;
-  if (fine && !reduce) {
-    sec.addEventListener('pointermove', e => {
-      const r = frame.getBoundingClientRect();
-      tx = clamp((e.clientX - (r.left + r.width / 2)) / (r.width * 1.6), -1, 1);
-      ty = clamp((e.clientY - (r.top + r.height / 2)) / r.height, -1, 1);
-    });
-    sec.addEventListener('pointerleave', () => { tx = 0; ty = 0; });
-  }
-
   const loop = now => {
     sync();
     if (!video.paused && video.readyState >= 2 && now - lastPaint > 120) { paint(video); lastPaint = now; }
-    if (fine && !reduce) {
-      rx += (-ty * 5 - rx) * 0.08;
-      ry += (tx * 9 - ry) * 0.08;
-      frame.style.transform = `rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg)`;
-    }
     raf = requestAnimationFrame(loop);
   };
-  const startLoop = () => { if (!raf) raf = requestAnimationFrame(loop); };
-  const stopLoop = () => { cancelAnimationFrame(raf); raf = 0; };
-
-  /* play / pause */
-  const play = () => {
-    if (video.preload === 'none') video.preload = 'auto';
-    const p = video.play();
-    if (p && p.catch) p.catch(() => { frame.classList.add('is-paused'); });
-  };
   const ui = () => {
-    frame.classList.toggle('is-paused', video.paused);
-    toggle.setAttribute('aria-label', video.paused ? 'Play video' : 'Pause video');
+    film.classList.toggle('is-paused', video.paused);
+    toggle.setAttribute('aria-label', video.paused ? 'Play film' : 'Pause film');
   };
   video.addEventListener('play', ui);
   video.addEventListener('pause', ui);
-  ui();
+  const seek = t => {
+    if (video.readyState >= 1) video.currentTime = t + 0.02;
+    else video.addEventListener('loadedmetadata', () => { video.currentTime = t + 0.02; }, { once: true });
+  };
 
-  toggle.addEventListener('click', () => {
-    if (video.paused) { userPaused = false; play(); }
-    else { userPaused = true; video.pause(); }
+  const open = (t, from) => {
+    opener = from;
+    filmOpen = true;
+    panels.forEach(v => v.pause());
+    const poster = new Image();
+    poster.onload = () => paint(poster);
+    poster.src = video.getAttribute('poster');
+    film.hidden = false;
+    document.body.classList.add('pf-open');
+    outside.forEach(el => { el.inert = true; });
+    seek(t);
+    play(video);
+    void film.offsetWidth; // apply the hidden state first so the fade-in runs
+    film.classList.add('is-open');
+    ui();
+    if (!raf) raf = requestAnimationFrame(loop);
+    closeBtn.focus({ preventScroll: true });
+  };
+  const close = () => {
+    if (film.hidden) return;
+    video.pause();
+    film.classList.remove('is-open');
+    document.body.classList.remove('pf-open');
+    outside.forEach(el => { el.inert = false; });
+    cancelAnimationFrame(raf); raf = 0;
+    filmOpen = false;
+    setTimeout(() => { film.hidden = true; }, reduce ? 0 : 450);
+    resumePanels();
+    if (opener) opener.focus({ preventScroll: true });
+  };
+
+  sec.addEventListener('click', e => {
+    const b = e.target.closest('[data-t]');
+    if (b) open(parseFloat(b.dataset.t), b);
   });
-  steps.forEach(s => s.b.addEventListener('click', () => {
-    userPaused = false;
-    if (video.readyState >= 1) video.currentTime = s.t + 0.02;
-    else video.addEventListener('loadedmetadata', () => { video.currentTime = s.t + 0.02; }, { once: true });
-    play();
-    sync();
-  }));
-
-  // start fetching a little before the section arrives; play only while it is on screen
-  new IntersectionObserver(([e]) => {
-    if (e.isIntersecting && video.preload === 'none') video.preload = 'auto';
-  }, { rootMargin: '600px 0px' }).observe(sec);
-  new IntersectionObserver(([e]) => {
-    visible = e.isIntersecting;
-    if (visible) { if (!userPaused) play(); startLoop(); }
-    else { if (!video.paused) video.pause(); stopLoop(); }
-  }, { threshold: 0.2 }).observe(sec);
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) video.pause();
-    else if (visible && !userPaused) play();
+  chapters.forEach(c => c.b.addEventListener('click', () => { seek(c.t); play(video); sync(); }));
+  toggle.addEventListener('click', () => { if (video.paused) play(video); else video.pause(); });
+  closeBtn.addEventListener('click', close);
+  $('.pf__bg', film).addEventListener('click', close);
+  window.addEventListener('keydown', e => {
+    if (film.hidden) return;
+    if (e.key === 'Escape') { e.preventDefault(); close(); }
+    else if (e.key === ' ' && e.target === document.body) { e.preventDefault(); toggle.click(); }
+    else if (e.key === 'Tab') {
+      const f = $$('button', film).filter(el => el.getClientRects().length);
+      const a = f[0], z = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === a) { e.preventDefault(); z.focus(); }
+      else if (!e.shiftKey && document.activeElement === z) { e.preventDefault(); a.focus(); }
+    }
   });
-
-  /* entrance: the frame opens up as it scrolls in, the feather rings swing into place */
-  if (G && window.ScrollTrigger) {
-    G.registerPlugin(window.ScrollTrigger);
-    const st = { trigger: stage, start: 'top 92%', end: 'center 55%', scrub: 0.6 };
-    G.fromTo(frame, { clipPath: 'inset(16% 20% 16% 20% round 8px)' }, { clipPath: 'inset(0% 0% 0% 0% round 8px)', ease: 'none', scrollTrigger: st });
-    G.fromTo(video, { scale: 1.3 }, { scale: 1, ease: 'none', scrollTrigger: { ...st } });
-    G.fromTo('.peacock__rings', { scale: 0.75, opacity: 0, rotate: -18 }, { scale: 1, opacity: 1, rotate: 0, ease: 'none', scrollTrigger: { ...st } });
-    G.to('.peacock__rings', { yPercent: -8, ease: 'none', scrollTrigger: { trigger: sec, start: 'top bottom', end: 'bottom top', scrub: true } });
-  }
 })();
